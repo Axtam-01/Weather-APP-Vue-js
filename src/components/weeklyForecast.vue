@@ -99,7 +99,7 @@ margin-left: 2.2rem;
 .weatherWrapper::after {
   content: '';
   display: block; 
-  border-bottom: 1px solid #ffff;  
+  border-bottom: 0.0625rem solid #2e3e5b;;  
   margin: 0 auto;
   width: 80%;
   
