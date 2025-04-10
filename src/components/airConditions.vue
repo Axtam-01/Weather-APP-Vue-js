@@ -7,8 +7,6 @@
     </div>
 
     <div class="weatherStats">
-      
-      
       <div class="weatherItem">
         <div class="infoIcon">
           <img
@@ -22,11 +20,10 @@
         </div>
       </div>
 
-   
       <div class="weatherItem">
         <div class="infoIcon">
           <img
-            src="/src/assets/img/air_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.svg" 
+            src="/src/assets/img/air_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.svg"
             alt="wind"
           />
         </div>
@@ -36,7 +33,6 @@
         </div>
       </div>
 
-  
       <div class="weatherItem">
         <div class="infoIcon">
           <img
@@ -50,7 +46,6 @@
         </div>
       </div>
 
-     
       <div class="weatherItem">
         <div class="infoIcon">
           <img
@@ -63,7 +58,6 @@
           <span>3</span>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -71,7 +65,13 @@
 
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      
+    }
+  },
+};
 </script>
 <style >
 .airConditions {
@@ -82,9 +82,8 @@ export default {};
   padding-top: 1rem;
   padding-left: 1rem;
   border-radius: 0.75rem;
-  
 }
-.titleAction p{
+.titleAction p {
   margin-left: 1rem;
 }
 .titleAction {
@@ -102,25 +101,23 @@ export default {};
   margin-right: 1.25rem;
 }
 .weatherStats,
-.weatherMetrics {  
+.weatherMetrics {
   display: flex;
-   align-items: center;
-  flex-wrap: wrap;  
-}  
-.realFeel span{
+  align-items: center;
+  flex-wrap: wrap;
+}
+.realFeel span {
   color: white;
   font-weight: bold;
 }
 .tempValue {
   display: flex;
   flex-direction: column;
-  
 }
-.weatherItem{
+.weatherItem {
   display: flex;
   gap: 1rem;
   padding: 1rem;
-flex-basis: 50%;
+  flex-basis: 50%;
 }
-
 </style>

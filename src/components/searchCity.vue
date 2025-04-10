@@ -1,21 +1,32 @@
-<template >
-  <div>
-    <div class="sections">
-      <section class="weatherNav">
-        <input
-          type="text"
-          name="search"
-          placeholder="Search for cities"
-          class="search"
-        />
-      </section>
-    </div>
+<template>
+  <div class="sections">
+    <section class="weatherNav">
+      <input
+        v-model="city"
+        @keyup.enter="submitCity"
+        type="text"
+        placeholder="Search for cities"
+        class="search"
+      />
+    </section>
   </div>
 </template>
-<script>
-export default {};
+
+<script setup>
+import { ref } from "vue";
+const emit = defineEmits(["city-selected"]);
+
+const city = ref("");
+
+const submitCity = () => {
+  if (city.value.trim()) {
+    emit("city-selected", city.value);
+    city.value = "";
+  }
+};
 </script>
-<style>
+
+<style scoped>
 .search {
   width: 100%;
   height: 2.2rem;

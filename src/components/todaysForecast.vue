@@ -64,8 +64,7 @@
     </div>
   </div>
 </template>
-<script>
-export default {};
+<script setup>
 </script>
 <style>
 .weatherForecast {
@@ -78,12 +77,13 @@ export default {};
 .titleForecast {
   color: #8a96a9;
   padding-bottom: 1rem;
+  margin-left: -0.625rem;
 }
 .temperatureBlock {
   display: flex;
   justify-content: space-around;
   color: #8a96a9;
-  gap:2.5rem;
+  gap: 2.5rem;
 }
 .line {
   height: 6.5rem;
