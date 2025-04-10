@@ -7,8 +7,8 @@
     <div class="mainBox">
       <div class="weatherWidget">
         <searchCity @city-selected="fetchWeather" />
-        <weatherInfo :weatherData="weather" />
-        <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>
+        <weatherInfo :weatherData="weather" />     
+        <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>       
         <p v-if="loading" class="loadingMessage">Loading...</p>
         <todaysForecast />
         <airConditions />
@@ -35,7 +35,7 @@ import weeklyForecast from "@/components/weeklyForecast.vue";
 const API_KEY = "286d526543394fa53c2fcb9d35c1ddf7";
 const weather = ref(null);
 const errorMessage = ref("");
-const loading = ref(false);
+const loading = ref(false); 
 
 onMounted(() => {
   errorMessage.value = "Please enter a city name or enter a correct name.";
@@ -60,7 +60,7 @@ const fetchWeather = async (city) => {
     weather.value = null;
     console.error("error:", err);
   } finally {
-    loading.value = false;
+    loading.value = false; 
   }
 };
 </script>

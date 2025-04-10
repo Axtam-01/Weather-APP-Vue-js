@@ -65,6 +65,7 @@
   </div>
 </template>
 <script setup>
+
 </script>
 <style>
 .weatherForecast {
@@ -83,7 +84,15 @@
   display: flex;
   justify-content: space-around;
   color: #8a96a9;
-  gap: 2.5rem;
+  gap: 2.9rem;
+  overflow-y: auto;
+max-width: 30rem;
+padding-left: 3rem;
+max-height: 6.5rem;
+
+}
+.temperatureBlock::-webkit-scrollbar {
+  display: none;
 }
 .line {
   height: 6.5rem;
