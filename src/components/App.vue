@@ -7,10 +7,16 @@
     <div class="mainBox">
       <div class="weatherWidget">
         <searchCity @city-selected="fetchWeather" />
+        
+   
         <weatherInfo :weatherData="weather" />     
+        
+       
         <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>       
         <p v-if="loading" class="loadingMessage">Loading...</p>
-        <todaysForecast />
+
+       
+        <todaysForecast :forecastData="forecastData" /> 
         <airConditions />
       </div>
     </div>
@@ -32,8 +38,13 @@ import todaysForecast from "@/components/todaysForecast.vue";
 import airConditions from "@/components/airConditions.vue";
 import weeklyForecast from "@/components/weeklyForecast.vue";
 
+
 const API_KEY = "286d526543394fa53c2fcb9d35c1ddf7";
+
+
 const weather = ref(null);
+const forecastData = ref([]); 
+const cityName = ref(""); 
 const errorMessage = ref("");
 const loading = ref(false); 
 
@@ -41,26 +52,38 @@ onMounted(() => {
   errorMessage.value = "Please enter a city name or enter a correct name.";
 });
 
+
 const fetchWeather = async (city) => {
   loading.value = true;
   errorMessage.value = "";
 
   try {
     const res = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`
     );
     if (res.data.cod === "404") {
       errorMessage.value = "City not found. Please enter a valid name.";
       weather.value = null;
+      forecastData.value = [];
+      cityName.value = ""; 
     } else {
-      weather.value = res.data;
+
+      weather.value = res.data.list[0]; 
+      
+      
+      forecastData.value = res.data.list.slice(0, 6); 
+
+      
+      cityName.value = res.data.city.name;
     }
   } catch (err) {
     errorMessage.value = "An error occurred. Please try again.";
     weather.value = null;
+    forecastData.value = [];
+    cityName.value = "";
     console.error("error:", err);
   } finally {
-    loading.value = false; 
+    loading.value = false;
   }
 };
 </script>
@@ -101,5 +124,11 @@ body {
   widows: 100%;
   height: 15.4rem;
   padding: 5rem;
+}
+
+.cityName {
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 1rem;
 }
 </style>

@@ -1,111 +1,92 @@
 <template>
   <div class="weatherForecast">
     <p class="titleForecast">TODAY'S FORECAST</p>
-    <div class="temperatureBlock">
-      <div class="forecastItem">
-        <p>6.00</p>
-        <img
-          src="/src/assets/img/rainy_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="cloud"
-        />
-        <h2>25</h2>
-      </div>
 
-      <span class="line"></span>
+    <div v-if="errorMessage || forecastData.length === 0" class="errorBlock">
+      <p class="forecastError">{{ errorMessage || 'Please search for a city.' }}</p>
+    </div>
 
-      <div class="forecastItem">
-        <p>6.00</p>
+    <div v-else class="temperatureBlock">
+      <div
+        v-for="(forecast, index) in forecastData"
+        :key="index"
+        class="forecastItem"
+      >
+        <p>{{ forecast.dt_txt.substring(11, 16) }}</p>
         <img
-          src="/src/assets/img/rainy_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="cloud"
+          :src="`https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png`"
+          :alt="forecast.weather[0].description"
         />
-        <h2>25</h2>
-      </div>
-      <span class="line"></span>
-
-      <div class="forecastItem">
-        <p>6.00</p>
-        <img
-          src="/src/assets/img/rainy_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="cloud"
-        />
-        <h2>25</h2>
-      </div>
-      <span class="line"></span>
-
-      <div class="forecastItem">
-        <p>6.00</p>
-        <img
-          src="/src/assets/img/rainy_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="cloud"
-        />
-        <h2>25</h2>
-      </div>
-      <span class="line"></span>
-
-      <div class="forecastItem">
-        <p>6.00</p>
-        <img
-          src="/src/assets/img/rainy_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="cloud"
-        />
-        <h2>25</h2>
-      </div>
-      <span class="line"></span>
-
-      <div class="forecastItem">
-        <p>6.00</p>
-        <img
-          src="/src/assets/img/rainy_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.svg"
-          alt="cloud"
-        />
-        <h2>25</h2>
+        <p>{{ Math.round(forecast.main.temp) }}°C</p>
       </div>
     </div>
   </div>
 </template>
-<script setup>
 
+<script setup>
+defineProps({
+  forecastData: {
+    type: Array,
+    required: true,
+  },
+  errorMessage: {
+    type: String,
+    default: "",
+  },
+});
 </script>
-<style>
+
+<style scoped>
 .weatherForecast {
   width: 100%;
   padding: 2rem;
   color: #8a96a9;
   background-color: #242d3d;
   border-radius: 0.6rem;
+  margin-top: 1rem;
 }
 .titleForecast {
-  color: #8a96a9;
-  padding-bottom: 1rem;
-  margin-left: -0.625rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #ffffff;
 }
 .temperatureBlock {
   display: flex;
-  justify-content: space-around;
-  color: #8a96a9;
-  gap: 2.9rem;
-  overflow-y: auto;
-max-width: 30rem;
-padding-left: 3rem;
-max-height: 6.5rem;
-
+  justify-content: flex-start;
+  gap: 2.5rem;
+  overflow-x: auto;
+  padding-left: 1rem;
 }
 .temperatureBlock::-webkit-scrollbar {
   display: none;
-}
-.line {
-  height: 6.5rem;
-  width: 0.032rem;
-  background-color: #2e3e5b;
 }
 .forecastItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
-.forecastItem h2 {
+.forecastItem p {
   color: #f1f3f6;
+  font-size: 1.2rem;
+}
+.forecastItem img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+.forecastItem img:hover {
+  transform: scale(1.2);
+}
+.errorBlock {
+  padding: 1.5rem;
+  text-align: center;
+}
+.forecastError {
+  color: #ff5e5e;
+  font-size: 1.1rem;
 }
 </style>
