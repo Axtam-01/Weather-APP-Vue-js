@@ -54,7 +54,7 @@ defineProps({
 .temperatureBlock {
   display: flex;
   justify-content: flex-start;
-  gap: 2.5rem;
+  gap: 3rem;
   overflow-x: auto;
   padding-left: 1rem;
 }
@@ -76,11 +76,9 @@ defineProps({
   height: 40px;
   object-fit: contain;
   border-radius: 50%;
-  transition: transform 0.3s ease;
+
 }
-.forecastItem img:hover {
-  transform: scale(1.2);
-}
+
 .errorBlock {
   padding: 1.5rem;
   text-align: center;
