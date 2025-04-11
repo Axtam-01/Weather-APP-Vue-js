@@ -7,17 +7,15 @@
     <div class="mainBox">
       <div class="weatherWidget">
         <searchCity @city-selected="fetchWeather" />
-        
-   
-        <weatherInfo :weatherData="weather" />     
-        
-       
-        <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>       
+        <weatherInfo :weatherData="weather" />
+        <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>
         <p v-if="loading" class="loadingMessage">Loading...</p>
-
-       
-        <todaysForecast :forecastData="forecastData" /> 
-        <airConditions />
+        <todaysForecast :forecastData="forecastData" />
+        <airConditions 
+          :realFeel="weather?.main?.feels_like" 
+          :windSpeed="weather?.wind?.speed" 
+          :rainChance="forecastData[0]?.pop * 100" 
+          :uvIndex="weather?.uvi" />
       </div>
     </div>
 
@@ -38,20 +36,16 @@ import todaysForecast from "@/components/todaysForecast.vue";
 import airConditions from "@/components/airConditions.vue";
 import weeklyForecast from "@/components/weeklyForecast.vue";
 
-
 const API_KEY = "286d526543394fa53c2fcb9d35c1ddf7";
 
-
 const weather = ref(null);
-const forecastData = ref([]); 
-const cityName = ref(""); 
+const forecastData = ref([]);
 const errorMessage = ref("");
-const loading = ref(false); 
+const loading = ref(false);
 
 onMounted(() => {
   errorMessage.value = "Please enter a city name or enter a correct name.";
 });
-
 
 const fetchWeather = async (city) => {
   loading.value = true;
@@ -65,22 +59,14 @@ const fetchWeather = async (city) => {
       errorMessage.value = "City not found. Please enter a valid name.";
       weather.value = null;
       forecastData.value = [];
-      cityName.value = ""; 
     } else {
-
-      weather.value = res.data.list[0]; 
-      
-      
-      forecastData.value = res.data.list.slice(0, 6); 
-
-      
-      cityName.value = res.data.city.name;
+      weather.value = res.data.list[0];  // Bu faqat birinchi kunni oladi
+      forecastData.value = res.data.list.slice(0, 6); // 6 kunlik prognoz
     }
   } catch (err) {
     errorMessage.value = "An error occurred. Please try again.";
     weather.value = null;
     forecastData.value = [];
-    cityName.value = "";
     console.error("error:", err);
   } finally {
     loading.value = false;
@@ -121,7 +107,6 @@ body {
 .loadingMessage {
   color: red;
   font-size: 1.2rem;
-  widows: 100%;
   height: 15.4rem;
   padding: 5rem;
 }

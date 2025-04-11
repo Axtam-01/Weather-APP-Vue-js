@@ -1,4 +1,3 @@
-
 <template>
   <div class="airConditions">
     <div class="titleAction">
@@ -16,7 +15,7 @@
         </div>
         <div class="realFeel">
           <p>Real Feel</p>
-          <span>31°</span>
+          <span>{{ realFeel }}°</span>
         </div>
       </div>
 
@@ -29,7 +28,7 @@
         </div>
         <div class="realFeel">
           <p>Wind</p>
-          <span>24 km/h</span>
+          <span>{{ windSpeed }} km/h</span>
         </div>
       </div>
 
@@ -42,7 +41,7 @@
         </div>
         <div class="realFeel">
           <p>Chance of rain</p>
-          <span class="rainPercentage">0 %</span>
+          <span class="rainPercentage">{{ rainChance }} %</span>
         </div>
       </div>
 
@@ -55,25 +54,37 @@
         </div>
         <div class="realFeel">
           <p>UV Index</p>
-          <span>3</span>
+          <span>{{ uvIndex }}</span>
         </div>
       </div>
     </div>
   </div>
 </template>
 
+<script setup>
+import { defineProps } from 'vue';
 
-
-<script>
-export default {
-  data() {
-    return {
-      
-    }
+const props = defineProps({
+  realFeel: {
+    type: Number,
+    required: true,
   },
-};
+  windSpeed: {
+    type: Number,
+    required: true,
+  },
+  rainChance: {
+    type: Number,
+    required: true,
+  },
+  uvIndex: {
+    type: Number,
+    required: true,
+  },
+});
 </script>
-<style >
+
+<style scoped>
 .airConditions {
   color: #8a96a9;
   width: 100%;
@@ -109,6 +120,7 @@ export default {
 .realFeel span {
   color: white;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 .tempValue {
   display: flex;
