@@ -11,11 +11,12 @@
         <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>
         <p v-if="loading" class="loadingMessage">Loading...</p>
         <todaysForecast :forecastData="forecastData" />
-        <airConditions 
-          :realFeel="weather?.main?.feels_like" 
-          :windSpeed="weather?.wind?.speed" 
-          :rainChance="forecastData[0]?.pop * 100" 
-          :uvIndex="weather?.uvi" />
+        <airConditions
+          :realFeel="weather?.main?.feels_like"
+          :windSpeed="weather?.wind?.speed"
+          :rainChance="forecastData[0]?.pop * 100"
+          :uvIndex="weather?.uvi"
+        />
       </div>
     </div>
 
@@ -26,25 +27,20 @@
 </template>
 
 <script setup>
-// Your existing code for fetching weather data
 import { ref, onMounted } from "vue";
 import axios from "axios";
-
 import navWeather from "@/components/nav.vue";
 import searchCity from "@/components/searchCity.vue";
 import weatherInfo from "@/components/weatherInfo.vue";
 import todaysForecast from "@/components/todaysForecast.vue";
 import airConditions from "@/components/airConditions.vue";
 import weeklyForecast from "@/components/weeklyForecast.vue";
-
 const API_KEY = "286d526543394fa53c2fcb9d35c1ddf7";
-
 const weather = ref(null);
 const forecastData = ref([]);
 const dailyForecast = ref([]);
 const errorMessage = ref("");
 const loading = ref(false);
-
 onMounted(() => {
   errorMessage.value = "Please enter a city name or enter a correct name.";
 });
@@ -66,23 +62,21 @@ const fetchWeather = async (city) => {
     } else {
       weather.value = res.data.list[0];
       forecastData.value = res.data.list.slice(0, 6);
-
-      // Group forecast entries by date and pick the one closest to 12:00
       const grouped = {};
-      res.data.list.forEach(item => {
+      res.data.list.forEach((item) => {
         const date = item.dt_txt.split(" ")[0];
         if (!grouped[date]) grouped[date] = [];
         grouped[date].push(item);
       });
-
-      // Extract one item per day (closest to 12:00)
       const days = Object.keys(grouped).slice(0, 7);
-      dailyForecast.value = days.map(date => {
+      dailyForecast.value = days.map((date) => {
         const dayItems = grouped[date];
         return dayItems.reduce((prev, curr) => {
           const prevHour = parseInt(prev.dt_txt.split(" ")[1].split(":")[0]);
           const currHour = parseInt(curr.dt_txt.split(" ")[1].split(":")[0]);
-          return Math.abs(currHour - 12) < Math.abs(prevHour - 12) ? curr : prev;
+          return Math.abs(currHour - 12) < Math.abs(prevHour - 12)
+            ? curr
+            : prev;
         });
       });
     }
@@ -97,9 +91,6 @@ const fetchWeather = async (city) => {
   }
 };
 </script>
-
-
-
 <style>
 * {
   margin: 0;

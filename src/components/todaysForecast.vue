@@ -3,7 +3,9 @@
     <p class="titleForecast">TODAY'S FORECAST</p>
 
     <div v-if="errorMessage || forecastData.length === 0" class="errorBlock">
-      <p class="forecastError">{{ errorMessage || 'Please search for a city.' }}</p>
+      <p class="forecastError">
+        {{ errorMessage || "Please search for a city." }}
+      </p>
     </div>
 
     <div v-else class="temperatureBlock">
@@ -76,7 +78,6 @@ defineProps({
   height: 40px;
   object-fit: contain;
   border-radius: 50%;
-
 }
 
 .errorBlock {
