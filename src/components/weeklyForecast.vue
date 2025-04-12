@@ -1,14 +1,13 @@
 <template>
-  <div class="forecastWeek">
+  <!-- Content is rendered only when the data is ready -->
+  <div class="forecastWeek" v-if="weeklyData.length > 0">
     <p class="textAside">7-DAY FORECAST</p>
-    <p v-if="!weeklyData.length" class="cityError">Please enter a city.</p>
-    <div v-for="(day, index) in weeklyData" :key="index" class="weatherWrapper">
+    <div v-for="(day, index) in weeklyData" :key="day.dt_txt" class="weatherWrapper">
       <div class="todayBox">
         <p>{{ formatDate(day.dt_txt) }}</p>
         <img
           :src="getIconUrl(day.weather[0].icon)"
-          :alt="day.weather[0].description"
-        />
+          :alt="day.weather[0].description || 'Weather icon'"/>
         <p>{{ day.weather[0].main }}</p>
         <p>
           <span>{{ Math.round(day.main.temp_max) }}°</span>/{{
@@ -34,7 +33,8 @@ const formatDate = (dateString) => {
 };
 
 const getIconUrl = (iconCode) => {
-  return `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
+  
+  return iconCode ? `https://openweathermap.org/img/wn/${iconCode}@2x.png` : '/path/to/default-icon.png';
 };
 </script>
 
@@ -44,13 +44,6 @@ const getIconUrl = (iconCode) => {
   margin-left: 1.7rem;
   font-weight: bold;
   color: white;
-}
-
-.cityError {
-  color: red;
-  font-size: 1.5rem;
-  text-align: center;
-  padding: 15rem;
 }
 
 .weatherWrapper::after {

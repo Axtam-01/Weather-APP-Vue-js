@@ -55,7 +55,7 @@ const getWeatherIcon = (main) => {
   display: flex;
   gap: 3.5rem;
   color: white;
-  margin: 3rem;
+  margin: 2.5rem;
   padding-bottom: 2.3125rem;
 }
 .cityName,

@@ -41,11 +41,11 @@ defineProps({
 <style scoped>
 .weatherForecast {
   width: 100%;
-  padding: 2rem;
+  padding: 1.5rem;
   color: #8a96a9;
   background-color: #242d3d;
   border-radius: 0.6rem;
-  margin-top: 1rem;
+
 }
 .titleForecast {
   font-size: 1.3rem;
