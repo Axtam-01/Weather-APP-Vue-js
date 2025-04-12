@@ -1,13 +1,15 @@
 <template>
-  <div class="weatherForecast">
+  <div v-if="errorMessage || forecastData.length > 0" class="weatherForecast">
     <p class="titleForecast">TODAY'S FORECAST</p>
 
-    <div v-if="errorMessage || forecastData.length === 0" class="errorBlock">
+    <!-- Show error message if exists -->
+    <div v-if="errorMessage" class="errorBlock">
       <p class="forecastError">
-        {{ errorMessage || "Please search for a city." }}
+        {{ errorMessage }}
       </p>
     </div>
 
+    <!-- Display forecast data if available -->
     <div v-else class="temperatureBlock">
       <div
         v-for="(forecast, index) in forecastData"
@@ -45,14 +47,25 @@ defineProps({
   color: #8a96a9;
   background-color: #242d3d;
   border-radius: 0.6rem;
-
+  /* Hide the background when there's no data */
+  visibility: hidden;
 }
+
+.weatherForecast:empty {
+  visibility: hidden;
+}
+
+.weatherForecast:not(:empty) {
+  visibility: visible;
+}
+
 .titleForecast {
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 1rem;
   color: #ffffff;
 }
+
 .temperatureBlock {
   display: flex;
   justify-content: flex-start;
@@ -60,19 +73,23 @@ defineProps({
   overflow-x: auto;
   padding-left: 1rem;
 }
+
 .temperatureBlock::-webkit-scrollbar {
   display: none;
 }
+
 .forecastItem {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
 }
+
 .forecastItem p {
   color: #f1f3f6;
   font-size: 1.2rem;
 }
+
 .forecastItem img {
   width: 40px;
   height: 40px;
@@ -84,6 +101,7 @@ defineProps({
   padding: 1.5rem;
   text-align: center;
 }
+
 .forecastError {
   color: #ff5e5e;
   font-size: 1.1rem;
