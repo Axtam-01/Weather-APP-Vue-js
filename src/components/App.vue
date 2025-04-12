@@ -35,7 +35,8 @@ import weatherInfo from "@/components/weatherInfo.vue";
 import todaysForecast from "@/components/todaysForecast.vue";
 import airConditions from "@/components/airConditions.vue";
 import weeklyForecast from "@/components/weeklyForecast.vue";
-const API_KEY = "286d526543394fa53c2fcb9d35c1ddf7";
+const API_KEY = import.meta.env.VITE_API_KEY;
+
 const weather = ref(null);
 const forecastData = ref([]);
 const dailyForecast = ref([]);
@@ -60,10 +61,10 @@ const fetchWeather = async (city) => {
       forecastData.value = [];
       dailyForecast.value = [];
     } else {
-      weather.value = res.data.list[0];
+      weather.value = {name: city, ...res.data.list[0]};
       forecastData.value = res.data.list.slice(0, 6);
       const grouped = {};
-      res.data.list.forEach((item) => {
+      res.data.list.forEach((item) => { 
         const date = item.dt_txt.split(" ")[0];
         if (!grouped[date]) grouped[date] = [];
         grouped[date].push(item);
