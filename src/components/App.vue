@@ -48,7 +48,7 @@ onMounted(() => {
 
 const fetchWeather = async (city) => {
   loading.value = true;
-  errorMessage.value = "";  // Clear any previous error
+  errorMessage.value = ""; 
 
   try {
     const res = await axios.get(
@@ -56,7 +56,7 @@ const fetchWeather = async (city) => {
     );
 
     if (res.data.cod === "404") {
-      errorMessage.value = "City not found. Please enter a valid name.";  // Show error for city not found
+      errorMessage.value = "City not found. Please enter a valid name.";  
       weather.value = null;
       forecastData.value = [];
       dailyForecast.value = [];
@@ -82,11 +82,11 @@ const fetchWeather = async (city) => {
       });
     }
   } catch (err) {
-    errorMessage.value = "An error occurred. Please try again.";  // Show general error
+    errorMessage.value = "An error occurred. Please try again.";  
     weather.value = null;
     forecastData.value = [];
     dailyForecast.value = [];
-    console.error("error:", err);  // Log the error for debugging
+    console.error("error:", err);  
   } finally {
     loading.value = false;
   }
@@ -124,7 +124,7 @@ body {
 
 .errorMessage,
 .loadingMessage {
-  color: red;
+  color:white;
   font-size: 1.2rem;
   widows: 100%;
   height: 15.4rem;

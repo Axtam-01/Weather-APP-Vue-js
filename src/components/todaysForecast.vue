@@ -2,14 +2,11 @@
   <div v-if="errorMessage || forecastData.length > 0" class="weatherForecast">
     <p class="titleForecast">TODAY'S FORECAST</p>
 
-    <!-- Show error message if exists -->
     <div v-if="errorMessage" class="errorBlock">
       <p class="forecastError">
         {{ errorMessage }}
       </p>
     </div>
-
-    <!-- Display forecast data if available -->
     <div v-else class="temperatureBlock">
       <div
         v-for="(forecast, index) in forecastData"
@@ -47,7 +44,7 @@ defineProps({
   color: #8a96a9;
   background-color: #242d3d;
   border-radius: 0.6rem;
-  /* Hide the background when there's no data */
+ 
   visibility: hidden;
 }
 

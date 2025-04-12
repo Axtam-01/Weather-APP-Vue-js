@@ -1,5 +1,4 @@
 <template>
-  <!-- Content is rendered only when the data is ready -->
   <div class="forecastWeek" v-if="weeklyData.length > 0">
     <p class="textAside">7-DAY FORECAST</p>
     <div v-for="(day, index) in weeklyData" :key="day.dt_txt" class="weatherWrapper">

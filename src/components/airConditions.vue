@@ -1,5 +1,6 @@
 <template>
-  <div class="airConditions">
+
+  <div v-if="realFeel || windSpeed || rainChance || uvIndex" class="airConditions">
     <div class="titleAction">
       <p>AIR CONDITIONS</p>
       <button class="seeMore">See more</button>
