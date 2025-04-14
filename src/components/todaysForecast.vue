@@ -59,7 +59,7 @@ defineProps({
   font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 1rem;
-  color: #ffffff;
+  color:#8a96a9;
 }
 
 .temperatureBlock {

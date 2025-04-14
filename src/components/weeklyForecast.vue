@@ -42,7 +42,7 @@ const getIconUrl = (iconCode) => {
   padding: 1.5rem;
   margin-left: 1.7rem;
   font-weight: bold;
-  color: white;
+  color:#8a96a9;
 }
 
 .weatherWrapper::after {
