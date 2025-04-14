@@ -43,8 +43,7 @@ defineProps({
   padding: 1.5rem;
   color: #8a96a9;
   background-color: #242d3d;
-  border-radius: 0.6rem;
- 
+  border-radius: 0.6rem; 
   visibility: hidden;
 }
 
@@ -66,9 +65,10 @@ defineProps({
 .temperatureBlock {
   display: flex;
   justify-content: flex-start;
-  gap: 3rem;
+  gap: 3.5rem;
   overflow-x: auto;
   padding-left: 1rem;
+
 }
 
 .temperatureBlock::-webkit-scrollbar {
@@ -88,8 +88,8 @@ defineProps({
 }
 
 .forecastItem img {
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+    height:2.5rem;
   object-fit: contain;
   border-radius: 50%;
 }
@@ -102,5 +102,21 @@ defineProps({
 .forecastError {
   color: #ff5e5e;
   font-size: 1.1rem;
+}
+@media (max-width: 480px){
+
+  .temperatureBlock{
+    width: 20rem;
+    overflow-x: auto;
+    gap: 3rem;
+    padding-left:0;
+  }
+.titleForecast{
+  font-size: 14px;
+  color:#8a96a9;
+}
+.temperatureBlock p{
+  font-size: 14px;
+}
 }
 </style>

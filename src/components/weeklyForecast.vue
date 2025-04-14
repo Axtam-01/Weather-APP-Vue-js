@@ -87,4 +87,15 @@ const getIconUrl = (iconCode) => {
 .forecastWeek::-webkit-scrollbar {
   display: none;
 }
+@media (max-width: 480px){
+  .forecastWeek{
+margin: -2.875rem 0 0 0;
+font-size: 14px;
+  }
+  .textAside{
+   color: #8a96a9;
+  margin: 0 3.3rem 0 0;
+    
+ }
+} 
 </style>

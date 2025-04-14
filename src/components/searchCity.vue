@@ -3,7 +3,7 @@
     <section class="weatherNav">
       <input
         v-model="city"
-        @keyup.enter="submitCity"
+        @keyup.enter="handleEnter"
         type="text"
         placeholder="Search for cities"
         class="search"
@@ -24,17 +24,21 @@ const emit = defineEmits(["city-selected"]);
 
 const city = ref("");
 
+const handleEnter = (event) => {
+  event.target.blur(); 
+  submitCity();
+};
 const submitCity = () => {
   if (city.value.trim()) {
     emit("city-selected", city.value);
-    city.value = "";
+    city.value = ""; 
   }
 };
 </script>
 
 <style scoped>
 .search {
-  width: 100%;
+  width:100%;
   height: 2.2rem;
   border-radius: 0.52rem;
   color: white;
@@ -57,5 +61,18 @@ const submitCity = () => {
   position: absolute;
   left: 260px;
   cursor: pointer;
+}
+@media (max-width: 480px){
+  .searchBtn{
+    left: 2.5rem;
+    top: 3rem;
+  }
+  .search::placeholder{
+    padding: 2.5rem; 
+  }
+  .search{
+   
+    margin: 0 2rem 2rem 2rem;
+  }
 }
 </style>

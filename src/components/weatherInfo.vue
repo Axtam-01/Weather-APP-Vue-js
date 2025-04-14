@@ -47,9 +47,6 @@ const getWeatherIcon = (main) => {
   }
 };
 </script>
-
-
-
 <style scoped>
 .weatherContainer {
   display: flex;
@@ -69,7 +66,16 @@ const getWeatherIcon = (main) => {
   margin-top: 1.3rem;
 }
 .sunImage img {
-  width: 60px;
-  height: 60px;
+  width: 3.75rem;
+  height:3.75rem;
+}
+@media (max-width: 480px){
+  .weatherContainer{
+    gap: 9rem;
+    margin: 0 2.5rem;
+  }
+  .sunImage{
+    margin: 1.5rem 0 0 0;
+  }
 }
 </style>

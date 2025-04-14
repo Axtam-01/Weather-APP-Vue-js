@@ -1,27 +1,29 @@
 <template>
-  <div class="boxContainer">
-    <div class="fixedSidebar">
-      <navWeather />
-    </div>
-
-    <div class="mainBox">
-      <div class="weatherWidget">
-        <searchCity @city-selected="fetchWeather" />
-        <weatherInfo :weatherData="weather" />
-        <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>
-        <p v-if="loading" class="loadingMessage">Loading...</p>
-        <todaysForecast :forecastData="forecastData" />
-        <airConditions
-          :realFeel="weather?.main?.feels_like"
-          :windSpeed="weather?.wind?.speed"
-          :rainChance="forecastData[0]?.pop * 100"
-          :uvIndex="weather?.uvi"
-        />
+  <div>
+    <div class="boxContainer">
+      <div class="fixedSidebar">
+        <navWeather />
       </div>
-    </div>
 
-    <div class="weekk">
-      <weeklyForecast :weeklyData="dailyForecast" />
+      <div class="mainBox">
+        <div class="weatherWidget">
+          <searchCity @city-selected="fetchWeather" />
+          <weatherInfo :weatherData="weather" />
+          <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>
+          <p v-if="loading" class="loadingMessage">Loading...</p>
+          <todaysForecast :forecastData="forecastData" />
+          <airConditions
+            :realFeel="weather?.main?.feels_like"
+            :windSpeed="weather?.wind?.speed"
+            :rainChance="forecastData[0]?.pop * 100"
+            :uvIndex="weather?.uvi"
+          />
+        </div>
+      </div>
+
+      <div class="weekk">
+        <weeklyForecast :weeklyData="dailyForecast" />
+      </div>
     </div>
   </div>
 </template>
@@ -48,7 +50,7 @@ onMounted(() => {
 
 const fetchWeather = async (city) => {
   loading.value = true;
-  errorMessage.value = ""; 
+  errorMessage.value = "";
 
   try {
     const res = await axios.get(
@@ -56,12 +58,12 @@ const fetchWeather = async (city) => {
     );
 
     if (res.data.cod === "404") {
-      errorMessage.value = "City not found. Please enter a valid name.";  
+      errorMessage.value = "City not found. Please enter a valid name.";
       weather.value = null;
       forecastData.value = [];
       dailyForecast.value = [];
     } else {
-      weather.value = {name: city, ...res.data.list[0]};
+      weather.value = { name: city, ...res.data.list[0] };
       forecastData.value = res.data.list.slice(0, 6);
       const grouped = {};
       res.data.list.forEach((item) => {
@@ -82,11 +84,11 @@ const fetchWeather = async (city) => {
       });
     }
   } catch (err) {
-    errorMessage.value = "An error occurred. Please try again.";  
+    errorMessage.value = "An error occurred. Please try again.";
     weather.value = null;
     forecastData.value = [];
     dailyForecast.value = [];
-    console.error("error:", err);  
+    console.error("error:", err);
   } finally {
     loading.value = false;
   }
@@ -124,7 +126,7 @@ body {
 
 .errorMessage,
 .loadingMessage {
-  color:white;
+  color: white;
   font-size: 1.2rem;
   widows: 100%;
   height: 15.4rem;
@@ -135,5 +137,14 @@ body {
   font-size: 1.5rem;
   color: white;
   margin-top: 1rem;
+}
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
+  .boxContainer {
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

@@ -133,4 +133,18 @@ const props = defineProps({
   padding: 1rem;
   flex-basis: 50%;
 }
+@media (max-width: 480px){
+  .titleAction{
+    font-size: 14px;
+  }
+  .seeMore{
+  margin: -0.625rem 1.4rem 0 0 ;  
+  }
+  .realFeel{
+    font-size: 14px;
+  }
+  .realFeel span{
+font-size: 18px;
+  }
+}
 </style>
