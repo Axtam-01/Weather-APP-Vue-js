@@ -1,6 +1,5 @@
 <template>
-
-  <div v-if="realFeel || windSpeed || rainChance || uvIndex" class="airConditions">
+  <div v-if="realFeel || windSpeed || rainChance || windDegree" class="airConditions">
     <div class="titleAction">
       <p>AIR CONDITIONS</p>
       <button class="seeMore">See more</button>
@@ -50,12 +49,12 @@
         <div class="infoIcon">
           <img
             src="/src/assets/img/brightness_5_24dp_CCCCCC_FILL0_wght400_GRAD0_opsz24.svg"
-            alt="UV Index"
+            alt="WindDirection"
           />
         </div>
         <div class="realFeel">
-          <p>UV Index</p>
-          <span>{{ uvIndex }}</span>
+          <p>Wind Direction</p>
+          <span>{{ windDegree }}°</span>
         </div>
       </div>
     </div>
@@ -78,7 +77,7 @@ const props = defineProps({
     type: Number,
     required: true,
   },
-  uvIndex: {
+  windDegree: {
     type: Number,
     required: true,
   },
@@ -138,13 +137,13 @@ const props = defineProps({
     font-size: 14px;
   }
   .seeMore{
-  margin: -0.625rem 1.4rem 0 0 ;  
+    margin: -0.6rem 1.4rem 0 0;  
   }
   .realFeel{
     font-size: 14px;
   }
   .realFeel span{
-font-size: 18px;
+    font-size: 18px;
   }
 }
 </style>

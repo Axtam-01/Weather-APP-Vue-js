@@ -16,7 +16,7 @@
             :realFeel="weather?.main?.feels_like"
             :windSpeed="weather?.wind?.speed"
             :rainChance="forecastData[0]?.pop * 100"
-            :uvIndex="weather?.uvi"
+            :windDegree="weather?.wind?.deg" 
           />
         </div>
       </div>
