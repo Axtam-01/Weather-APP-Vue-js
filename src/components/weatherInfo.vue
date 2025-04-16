@@ -71,8 +71,7 @@ const getWeatherIcon = (main) => {
 }
 @media (max-width: 480px){
   .weatherContainer{
-    gap: 9rem;
-    margin: 0 2.5rem;
+       margin: 0 0 0 0.625rem;
   }
   .sunImage{
     margin: 1.5rem 0 0 0;

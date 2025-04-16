@@ -25,20 +25,20 @@ const emit = defineEmits(["city-selected"]);
 const city = ref("");
 
 const handleEnter = (event) => {
-  event.target.blur(); 
+  event.target.blur();
   submitCity();
 };
 const submitCity = () => {
   if (city.value.trim()) {
     emit("city-selected", city.value);
-    city.value = ""; 
+    city.value = "";
   }
 };
 </script>
 
 <style scoped>
 .search {
-  width:100%;
+  width: 100%;
   height: 2.2rem;
   border-radius: 0.52rem;
   color: white;
@@ -46,7 +46,7 @@ const submitCity = () => {
   border: none;
   padding-left: 0.9rem;
   outline: none;
-  padding-left: 40px;
+  padding-left: 2.5rem;
 }
 .search::placeholder {
   color: rgb(138, 131, 131);
@@ -59,20 +59,22 @@ const submitCity = () => {
   background: none;
   border: none;
   position: absolute;
-  left: 260px;
+  left: 16.25rem;
   cursor: pointer;
 }
-@media (max-width: 480px){
-  .searchBtn{
+@media (max-width: 480px) {
+  .searchBtn {
     left: 2.5rem;
-    top: 3rem;
+    top: 3.2rem;
   }
-  .search::placeholder{
-    padding: 2.5rem; 
+  .search::placeholder {
+    padding: 2.5rem;
   }
-  .search{
-   
+  .search {
     margin: 0 2rem 2rem 2rem;
+  }
+  .weatherNav {
+    margin-top: 0.625rem;
   }
 }
 </style>

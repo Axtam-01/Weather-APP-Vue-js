@@ -80,8 +80,9 @@ const getIconUrl = (iconCode) => {
   margin-top: 1.8rem;
   border-radius: 0.625rem;
   padding: 1rem;
-  max-height: 37.5rem;
+  max-height: 38.2rem;
   overflow-y: auto;
+  font-size: 18px;
 }
 
 .forecastWeek::-webkit-scrollbar {

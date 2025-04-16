@@ -114,18 +114,19 @@ const props = defineProps({
 .weatherStats,
 .weatherMetrics {
   display: flex;
-  align-items: center;
+ align-items: center;
   flex-wrap: wrap;
 }
 .realFeel span {
   color: white;
   font-weight: bold;
   font-size: 1.5rem;
+
 }
-.tempValue {
-  display: flex;
-  flex-direction: column;
+.realFeel p{
+  padding-bottom:0.25rem;
 }
+
 .weatherItem {
   display: flex;
   gap: 1rem;
