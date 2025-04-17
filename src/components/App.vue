@@ -16,16 +16,17 @@ import NavigationBar from "@/components/NavigationBar.vue";
 
 <style>
 .manibox{
-  gap: 0.625rem;
+  gap: 10.5rem;
   display: flex;
   
 }
 .contentWrapper{
   flex: 1;
 }
-.sidebarNav{
+/* .sidebarNav{
   margin-top: 2.2rem;
-}
+  height: 100%;
+} */
 @media (max-width: 480px){
   .manibox{
     gap: 0;

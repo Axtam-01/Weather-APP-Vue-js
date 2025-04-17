@@ -54,15 +54,19 @@ const isOpen = ref(false);
 .sidebarMenu {
   background: #242d3d;
   border-radius: 0.625rem;
-  width: 15.625rem;
-  height: 43rem;
+  width: 10rem;
+  height: 100vh;
+ position: fixed;
+
  
 }
 
 .iconBox {
   display: flex;
   flex-direction: column;
-  padding: 40%;
+  padding:2rem;
+  justify-content: center;
+  margin-top: 4rem;
 }
 .buttonIcon {
   display: flex;

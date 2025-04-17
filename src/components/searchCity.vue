@@ -38,7 +38,8 @@ const submitCity = () => {
 
 <style scoped>
 .search {
-  width: 100%;
+  min-width: 41rem;
+ 
   height: 2.2rem;
   border-radius: 0.52rem;
   color: white;
@@ -46,7 +47,8 @@ const submitCity = () => {
   border: none;
   padding-left: 0.9rem;
   outline: none;
-  padding-left: 2.5rem;
+  padding: 0 3.5rem;
+  margin-top: 2.2rem;
 }
 .search::placeholder {
   color: rgb(138, 131, 131);
@@ -59,19 +61,21 @@ const submitCity = () => {
   background: none;
   border: none;
   position: absolute;
-  left: 16.25rem;
-  cursor: pointer;
+   cursor: pointer;
+   top: 2.5rem;
+  margin-left: 0.625rem;
 }
 @media (max-width: 480px) {
   .searchBtn {
     left: 2.5rem;
-    top: 3.2rem;
+    top: 1rem;
   }
   .search::placeholder {
     padding: 2.5rem;
   }
   .search {
     margin: 0 2rem 2rem 2rem;
+    min-width: 19rem;
   }
   .weatherNav {
     margin-top: 0.625rem;

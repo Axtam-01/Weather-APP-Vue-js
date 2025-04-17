@@ -52,8 +52,9 @@ const getWeatherIcon = (main) => {
   display: flex;
   gap: 3.5rem;
   color: white;
-  margin: 2.5rem;
   padding-bottom: 2.3125rem;
+  margin-left: 2.5rem;
+  align-items: center;
 }
 .cityName,
 .temperature {

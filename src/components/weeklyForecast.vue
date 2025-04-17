@@ -77,7 +77,7 @@ const getIconUrl = (iconCode) => {
 .forecastWeek {
   color: #8a96a9;
   background-color: #242d3d;
-  margin-top: 1.8rem;
+  /* margin-top: 1.8rem; */
   border-radius: 0.625rem;
   padding: 1rem;
   max-height: 38.2rem;

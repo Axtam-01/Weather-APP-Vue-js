@@ -1,9 +1,8 @@
 <template>
   <div>
+    <searchCity @city-selected="fetchWeather" />
     <div class="boxContainer">
-          <div class="mainBox">
-        <div class="weatherWidget">
-          <searchCity @city-selected="fetchWeather" />
+          <div class="mainBox">               
           <weatherInfo :weatherData="weather" />
           <p v-if="errorMessage" class="errorMessage">{{ errorMessage }}</p>
           <p v-if="loading" class="loadingMessage">Loading...</p>
@@ -14,7 +13,7 @@
             :rainChance="forecastData[0]?.pop * 100"
             :windDegree="weather?.wind?.deg" 
           />
-        </div>
+       
       </div>
 
       <div class="weekk">
@@ -82,7 +81,7 @@ const fetchWeather = async (city) => {
       });
     }
   } catch (err) {
-    errorMessage.value = "An error occurred. Please try again.";
+    errorMessage.value = "Enter the name of the city";
     weather.value = null;
     forecastData.value = [];
     dailyForecast.value = [];
@@ -106,15 +105,17 @@ body {
 }
 
 .boxContainer {
+  align-items: stretch;
   display: flex;
-  margin-top: 2.2rem;
+  align-items:self-end;
   gap: 0.5rem;
 }
 
 .mainBox {
   display: flex;
+  flex-direction: column;
   gap: 0.625rem;
-  align-items: stretch;
+
 }
 
 .weekk {
@@ -143,6 +144,7 @@ body {
   .boxContainer {
     display: flex;
     flex-direction: column;
+    align-items: normal;
   }
 }
 </style>
